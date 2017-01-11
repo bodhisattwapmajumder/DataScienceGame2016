@@ -81,6 +81,6 @@ model.fit_generator(
         validation_data=validation_generator,
         nb_val_samples=nb_validation_samples, verbose = 1, callbacks = [checkpoint])
 
-model.save_weights('/Users/sourav/Documents/dsg_challenge-BodhiRobinJayantaAyan/all_augment_models/weights_lastday.h5')
+model.save_weights('../weights_lastday.h5')
 
 
