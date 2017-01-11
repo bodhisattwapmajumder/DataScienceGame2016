@@ -4,7 +4,7 @@ from os.path import isfile,join
 
 #read image files
 import numpy as np
-os.chdir("/Users/sourav/Desktop/dsg_challenge/roof_images")
+os.chdir("../roof_images")
 cwd = os.getcwd()
 files_list= [f for f in listdir(cwd) if isfile(join(cwd,f))]
 print files_list
@@ -19,8 +19,6 @@ for image_file in files_list:
 	if image_file[-4:] != ".jpg":
 		continue
 	loop_count += 1
-	# if loop_count > 10:
-	 	# break
 	print loop_count
 	im = Image.open(image_file)
 	width,height = im.size	
@@ -48,15 +46,3 @@ print "maximum height of any image in the list is",max(height_list)
 print "percentiles of width values",([np.percentile(width_list,10*i) for i in range(0,11)])
 print "percentiles of height values",([np.percentile(height_list,10*i) for i in range(0,11)])
 print "percentiles of aspect ratios",([np.percentile(aspect_ratio_list,10*i) for i in range(0,11)])
-
-
-
-# #read the train csv file
-# os.chdir("/Users/ROBIN/Desktop/dsg/")
-# import csv
-# row_count = 0
-# with open("id_train.csv",'rU') as csvfile:
-# 	spamreader = csv.reader(csvfile, delimiter=',')
-# 	for row in spamreader:
-# 		print [(row[0]).split(",")]
-# 		row_count += 1
