@@ -9,8 +9,8 @@ import numpy as np
 
 img_width, img_height = 128,128
 
-test_data_dir = '/Users/sourav/Documents/dsg_challenge-BodhiRobinJayantaAyan/resize_to_128_train_val/expanded_test/test/'
-output_file = open("/Users/sourav/Documents/dsg_challenge-BodhiRobinJayantaAyan/ensemble_big/convolution_models/doomday/10th_july_model1","w+")
+test_data_dir = '../test/'
+output_file = open("../final_model","w+")
 import os
 from os import listdir
 from os.path import isfile,join
@@ -52,14 +52,12 @@ model.add(Activation('softmax'))
 sgd  = keras.optimizers.SGD(lr=0.0625,decay = 1e-6,momentum=0.9,nesterov=True)
 model.compile(loss='categorical_crossentropy',optimizer='adadelta',metrics=['accuracy'])
 
-model.load_weights('/Users/sourav/Documents/dsg_challenge-BodhiRobinJayantaAyan/ensemble_big/convolution_models/doomday/weights.00-0.51.hdf5')
+model.load_weights('../weights.00-0.51.hdf5')
 
 loop_count = 0
 for file in files_list:
     print loop_count
     loop_count += 1
-    # if loop_count >10:
-        # break
     if file[-4:] != ".jpg":
         continue
     image_array = np.asarray(Image.open(file))
@@ -69,4 +67,3 @@ for file in files_list:
     a = model.predict_proba(reshaped,batch_size=1)[0]
     output_line = ((str(file[:-4])+","+str(a[0])+","+str(a[1])+","+str(a[2])+","+str(a[3]))+"\n")
     output_file.writelines(output_line)
-    #print a 
